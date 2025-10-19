@@ -54,18 +54,48 @@ People/projects using Piper:
 
 
 <!-- Training settings -->
-Basically we follow the training guild, just modify some of the process, below is what you need to do inorder to train ur new voice with pytorch 2.9
-1. follow the steps in training section and stop before started to train ur model, also if `python3 -m pip install -e .[train]` keep failing, use `pip install -e . [train] —timeout 1200 —retries 10 -v` instead.
-2. train ur dataset (LJSpeech-1.1 for example) from zero for 1 round and get ur first checkpoints files, would be something like epoch=11-step=8856.ckpt
-4. you need to do some extra works before training from pretrained checkpoints
+
+## Training settings
+follow the training guide, and modify some of the process, below is what you need to do in order to train ur new voice with pytorch 2.9
+1. follow the steps in training section and stop right before started to train ur model, also if `python3 -m pip install -e .[train]` keep failing, use `pip install -e . [train] —timeout 1200 —retries 10 -v` instead.
+2. train ur dataset (e.g: LJSpeech-1.1) from zero for 1 round and get ur first checkpoints files, would be something like epoch=11-step=8856.ckpt
+3. then you need to do some extra works before training from pretrained checkpoints
 - [download pretrained checkpoints]: https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US
 - use convert_ckpt2pt.py (inside merge/) to convert ur downloaded checkpoints into pure w&b file .pt
 - use merge_weights_into_ckpt.py (inside merge/) to merge your own first checkpoint and pretrained .pt file into new checkpoint file.
 ``` sh
 python3 merge_weight_into_ckpt.py [epoch=11-step=8856.ckpt](out first few checkpoint file) [epoch=6679-step=1554200.pt](pretrained w&b .pt file) [merged.ckpt](output file :inside runs/merged)
 ```
-- we'll get and merged.ckpt checkpoint file and we can started to train from pretrained checkpoints, simply use the command from the training guild, and put the merged.ckpt inside --ckpt_path
+4. Eventually, we'll get and merged.ckpt checkpoint file and we can started to train out model from pretrained checkpoints, simply use the command from the training guide, and put the merged.ckpt into --ckpt_path
 
 <!-- Export onnx settings -->
+
+## Export onnx settings
+1. create another .venv_export environment and download [pytorch 2.3 version with only cpu](https://pytorch.org/get-started/previous-versions/)
+
+``` sh
+# CPU only
+pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cpu
+```
+2. follow all the setup step in training guide, When your model is finished training, export it to onnx with:
+
+``` sh
+python3 -m piper.train.export_onnx \
+  --checkpoint /path/to/checkpoint.ckpt \
+  --output-file /path/to/model.onnx
+```
+4. follow sherpa_onnx piper guide [here](https://k2-fsa.github.io/sherpa/onnx/tts/piper.html)
+5. Add meta data to the onnx model : use the script in sherpa_onnx_testing/, and you'll get an tokens.txt.
+6. Download espeak-ng-data
+``` sh
+wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/espeak-ng-data.tar.bz2
+tar xf espeak-ng-data.tar.bz2
+```
+7. However for the command pip `install sherpa-onnx`, since the newest version didn't install several binaries, we downloaded previous version instead.
+``` sh
+pip install sherpa-onnx==1.12.5
+```
+8. then we are able to create test.wav file for testing our voice model. 
+
 
 
