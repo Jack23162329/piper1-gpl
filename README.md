@@ -60,7 +60,7 @@ Follow the [training guide](https://github.com/OHF-Voice/piper1-gpl/blob/main/do
 1. Follow the steps in training section and stop right before u started to train ur model, also if `python3 -m pip install -e .[train]` keep failing, use `pip install -e . [train] —timeout 1200 —retries 10 -v` instead.
 2. Train ur dataset (e.g: LJSpeech-1.1) from zero for 1 round and get ur first checkpoints files, would be something like epoch=1-step=3333.ckpt
 3. Then you need to do some extra works before training from pretrained checkpoints
-- [download pretrained checkpoints]: https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US
+- [download pretrained checkpoints](https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US)
 - use convert_ckpt2pt.py (inside merge/) to convert ur downloaded checkpoints into pure w&b file .pt
 - use merge_weights_into_ckpt.py (inside merge/) to merge your own first checkpoint and pretrained .pt file into new checkpoint file.
 ``` sh
