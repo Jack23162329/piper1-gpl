@@ -20,3 +20,11 @@ src/piper/train/vits/monotonic_align/core.c
 *.so
 
 lightning_logs/
+
+# ============ extra settings ======
+runs/
+LJSpeech-1.1/
+cache/
+merge/e*
+
+

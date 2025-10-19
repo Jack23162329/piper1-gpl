@@ -139,7 +139,7 @@ class VitsDataModule(L.LightningDataModule):
                     _LOGGER.warning("Missing audio file: %s", audio_path)
                     continue
 
-                cache_id = get_cache_id(row_number, text)
+                cache_id = Path(audio_path).stem # modify to use file name as input instead of content of the csv file.
 
                 text_path = self.cache_dir / f"{cache_id}.txt"
                 if not text_path.exists():
@@ -246,7 +246,7 @@ class VitsDataModule(L.LightningDataModule):
                     _LOGGER.warning("Missing audio file: %s", audio_path)
                     continue
 
-                cache_id = get_cache_id(row_number, text)
+                cache_id = Path(audio_path).stem # modify to use file name as input instead of content of the csv file.
 
                 phoneme_ids_path = self.cache_dir / f"{cache_id}.phonemes.pt"
                 if not phoneme_ids_path:
