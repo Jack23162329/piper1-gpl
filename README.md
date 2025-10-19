@@ -56,7 +56,7 @@ People/projects using Piper:
 <!-- Training settings -->
 
 ## Training settings
-follow the training guide, and modify some of the process, below is what you need to do in order to train ur new voice with pytorch 2.9
+follow the [training guide](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/TRAINING.md), and modify some of the process, below is what you need to do in order to train ur new voice with pytorch 2.9
 1. follow the steps in training section and stop right before started to train ur model, also if `python3 -m pip install -e .[train]` keep failing, use `pip install -e . [train] —timeout 1200 —retries 10 -v` instead.
 2. train ur dataset (e.g: LJSpeech-1.1) from zero for 1 round and get ur first checkpoints files, would be something like epoch=11-step=8856.ckpt
 3. then you need to do some extra works before training from pretrained checkpoints
