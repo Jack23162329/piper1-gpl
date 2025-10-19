@@ -61,8 +61,8 @@ Follow the [training guide](https://github.com/OHF-Voice/piper1-gpl/blob/main/do
 2. Train ur dataset (e.g: LJSpeech-1.1) from zero for 1 round and get ur first checkpoints files, would be something like epoch=1-step=3333.ckpt
 3. Then you need to do some extra works before training from pretrained checkpoints
 - [download pretrained checkpoints](https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US)
-- use convert_ckpt2pt.py (inside merge/) to convert ur downloaded checkpoints into pure w&b file .pt
-- use merge_weights_into_ckpt.py (inside merge/) to merge your own first checkpoint and pretrained .pt file into new checkpoint file.
+- use `convert_ckpt2pt.py` (inside merge/) to convert ur downloaded checkpoints into pure w&b file .pt
+- use `merge_weights_into_ckpt.py` (inside merge/) to merge your own first checkpoint and pretrained .pt file into new checkpoint file.
 ``` sh
 python3 merge_weight_into_ckpt.py [epoch=11-step=8856.ckpt](out first few checkpoint file) [epoch=6679-step=1554200.pt](pretrained w&b .pt file) [merged.ckpt](output file :inside runs/merged)
 ```
@@ -91,7 +91,7 @@ python3 -m piper.train.export_onnx \
 wget https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/espeak-ng-data.tar.bz2
 tar xf espeak-ng-data.tar.bz2
 ```
-7. However for the command pip `install sherpa-onnx`, since the newest version didn't install several binaries, we downloaded previous version instead.
+7. For the command pip `install sherpa-onnx`, since the newest version didn't install several binaries, we downloaded previous version instead.
 ``` sh
 pip install sherpa-onnx==1.12.5
 ```
