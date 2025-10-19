@@ -56,10 +56,10 @@ People/projects using Piper:
 <!-- Training settings -->
 
 ## Training settings
-follow the [training guide](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/TRAINING.md), and modify some of the process, below is what you need to do in order to train ur new voice with pytorch 2.9
-1. follow the steps in training section and stop right before started to train ur model, also if `python3 -m pip install -e .[train]` keep failing, use `pip install -e . [train] —timeout 1200 —retries 10 -v` instead.
-2. train ur dataset (e.g: LJSpeech-1.1) from zero for 1 round and get ur first checkpoints files, would be something like epoch=11-step=8856.ckpt
-3. then you need to do some extra works before training from pretrained checkpoints
+Follow the [training guide](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/TRAINING.md), and modify some of the process, below is what you need to do in order to train ur new voice with pytorch 2.9
+1. Follow the steps in training section and stop right before u started to train ur model, also if `python3 -m pip install -e .[train]` keep failing, use `pip install -e . [train] —timeout 1200 —retries 10 -v` instead.
+2. Train ur dataset (e.g: LJSpeech-1.1) from zero for 1 round and get ur first checkpoints files, would be something like epoch=1-step=3333.ckpt
+3. Then you need to do some extra works before training from pretrained checkpoints
 - [download pretrained checkpoints]: https://huggingface.co/datasets/rhasspy/piper-checkpoints/tree/main/en/en_US
 - use convert_ckpt2pt.py (inside merge/) to convert ur downloaded checkpoints into pure w&b file .pt
 - use merge_weights_into_ckpt.py (inside merge/) to merge your own first checkpoint and pretrained .pt file into new checkpoint file.
@@ -71,13 +71,13 @@ python3 merge_weight_into_ckpt.py [epoch=11-step=8856.ckpt](out first few checkp
 <!-- Export onnx settings -->
 
 ## Export onnx settings
-1. create another .venv_export environment and download [pytorch 2.3 version with only cpu](https://pytorch.org/get-started/previous-versions/)
+1. Create another .venv_export environment and download [pytorch 2.3 version with only cpu](https://pytorch.org/get-started/previous-versions/)
 
 ``` sh
 # CPU only
 pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cpu
 ```
-2. follow all the setup step in training guide, When your model is finished training, export it to onnx with:
+2. Follow all the setup step in training guide, When your model is finished training, export it to onnx with:
 
 ``` sh
 python3 -m piper.train.export_onnx \
@@ -95,7 +95,7 @@ tar xf espeak-ng-data.tar.bz2
 ``` sh
 pip install sherpa-onnx==1.12.5
 ```
-8. then we are able to create test.wav file for testing our voice model. 
+8. Then we are able to create test.wav file for testing our voice model. 
 
 
 
