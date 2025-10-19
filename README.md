@@ -95,7 +95,11 @@ tar xf espeak-ng-data.tar.bz2
 ``` sh
 pip install sherpa-onnx==1.12.5
 ```
-8. Then we are able to create test.wav file for testing our voice model. 
+8. Then we are able to create test.wav file for testing our voice model.
 
+## monitor training process
+``` sh
+tensorboard --logdir=./lightning_logs
+```
 
 
