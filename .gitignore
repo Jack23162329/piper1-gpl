@@ -28,4 +28,6 @@ LJSpeech-1.1/
 cache/
 merge/e*
 
+sherpa_onnx_testing/*.wav
+
 

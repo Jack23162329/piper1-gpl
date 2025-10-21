@@ -33,7 +33,7 @@ print("Wrote:", out)
 # ===============================
 # CLI prompt example
 # ===============================
-# python merge_ckpt.py [epoch=11-step=8856.ckpt](out first few checkpoint file) [epoch=6679-step=1554200.pt](pretrained w&b .pt file) [merged.ckpt](output file :inside runs/merged)
+# python3 merge_weight_into_ckpt.py [epoch=11-step=8856.ckpt](out first few checkpoint file) [epoch=6679-step=1554200.pt](pretrained w&b .pt file) [merged.ckpt](output file :inside runs/merged)
 # ===============================
 # output would be like
 # ===============================
